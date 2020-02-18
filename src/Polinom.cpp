@@ -59,12 +59,20 @@ Polinom operator+(const Polinom& A, const Polinom& B) {
     res.print();
     return res;
 }
+
+Polinom operator-(const Polinom& A, const Polinom& B) {
+    Polinom res(A.getDegree());
+    for (int i = 0; i <= res.getDegree(); i++) {
+        res.coef[i] = A.getCoef(i) - B.getCoef(i);
+    }
+    res.print();
+    return res;
+}
+
 Polinom operator*(const Polinom& A, const Polinom& B) {
     Polinom res(2*A.getDegree());
-    cout << res.getDegree() <<endl;
-    res.print();
     for (int i = 0; i <= A.getDegree(); i++) {
-        int idx = 0;
+        int idx = i;
         for (int j = 0; j <= B.getDegree(); j++) {
             res.coef[idx] += A.getCoef(i) * B.getCoef(j);
             idx ++;
@@ -85,7 +93,7 @@ void Polinom::print() {
             }
             cout << "x";
             if (i > 1) {
-                cout << i;
+                cout << "^" << i;
             }
         }
         else if (this->coef[i] < 0) {
@@ -96,7 +104,7 @@ void Polinom::print() {
             }
             cout << "x";
             if (i > 1) {
-                cout << i;
+                cout << "^" << i;
             }
         }
     }
@@ -115,4 +123,57 @@ int Polinom::solve(int x) {
         deg *= x;
     }
     return temp;
+}
+void solveDivideConquer(const Polinom& A,const Polinom& B) {
+    Polinom C;
+    C = divideConquerRecc(A,B);
+    C.print();
+}
+
+Polinom divideConquerRecc(const Polinom& A, const Polinom& B) {
+    Polinom C(2*A.getDegree());
+
+    // cout << A.getDegree() << endl;
+    // cout << C.getDegree() << endl;
+    if (A.getDegree() == 1) {
+        C.coef[0] = A.getCoef(0) * B.getCoef(0);
+        return C;
+    }
+    else {
+        int n = A.getDegree()/2;
+        Polinom AHigher(n);
+        Polinom ALower(n - A.getDegree()%2);
+        Polinom BHigher(n);
+        Polinom BLower(n - A.getDegree()%2);
+
+        for (int i = 0; i < n; i++) {
+            AHigher.setCoef(i, A.getCoef(i+n));
+            ALower.setCoef(i, A.getCoef(i));
+            BHigher.setCoef(i, B.getCoef(i+n));
+            BLower.setCoef(i, B.getCoef(i));
+        }
+
+        // AHigher.print();
+        // ALower.print();
+        // BHigher.print();
+        // BLower.print();
+
+        Polinom Y = divideConquerRecc(AHigher + ALower, BHigher + BLower);
+        Polinom U = divideConquerRecc(ALower, BLower);
+        Polinom Z = divideConquerRecc(AHigher, BHigher);
+
+        U.print();
+        Y.print();
+        Z.print();
+
+        Polinom res((2*A.getDegree()) - 1);
+
+        for (int i = 0; i < A.getDegree()-1; i++) {
+            res.coef[i] += U.getCoef(i);
+            res.coef[i+n] += (Y.getCoef(i) - U.getCoef(i) - Z.getCoef(i));
+            res.coef[i+(2*n)] += Z.getCoef(i);
+        }
+
+        return res;
+    }
 }

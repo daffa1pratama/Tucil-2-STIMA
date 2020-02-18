@@ -31,12 +31,13 @@
 using namespace std;
 
 int main() {
-    Polinom A(1);
+    Polinom A(2);
     A.inputCoef();
     A.print();
-    Polinom B(1);
+    Polinom B(2);
     B.inputCoef();
     B.print();
-    A+B;
+    solveDivideConquer(A,B);
+    // A+B;
     A*B;
 }
