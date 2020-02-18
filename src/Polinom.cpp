@@ -146,7 +146,7 @@ Polinom divideConquerRecc(const Polinom& A, const Polinom& B) {
         Polinom BHigher(n);
         Polinom BLower(n - A.getDegree()%2);
 
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i <= n; i++) {
             AHigher.setCoef(i, A.getCoef(i+n));
             ALower.setCoef(i, A.getCoef(i));
             BHigher.setCoef(i, B.getCoef(i+n));
@@ -166,7 +166,7 @@ Polinom divideConquerRecc(const Polinom& A, const Polinom& B) {
         Y.print();
         Z.print();
 
-        Polinom res((2*A.getDegree()) - 1);
+        Polinom res(2*A.getDegree());
 
         for (int i = 0; i < A.getDegree()-1; i++) {
             res.coef[i] += U.getCoef(i);
