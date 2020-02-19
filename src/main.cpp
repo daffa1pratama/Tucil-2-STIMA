@@ -9,6 +9,7 @@ int main() {
     Polinom B(2);
     B.inputCoef();
     B.print();
+    A+B;
     A*B;
     solveDivideConquer(A,B);
     // A-B-C;
