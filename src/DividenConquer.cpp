@@ -1,4 +1,4 @@
-#include "Polinom.hpp"
+#include "DividenConquer.hpp"
 using namespace std;
 
 // Constructor
@@ -82,14 +82,6 @@ Polinom operator*(const Polinom& A, const Polinom& B) {
     res.print();
     return res;
 }
-
-Polinom operator*(const Polinom& A, int x) {
-    Polinom res(A.getDegree() + x);
-    for (int i = x; i < A.getDegree() + x; i++) {
-        
-    }
-}
-
 // Other method
 void Polinom::print() {
     cout << this->coef[0];
@@ -221,8 +213,9 @@ Polinom divideConquerRecc(const Polinom& A, const Polinom& B) {
             res.coef[i+(2*n)] += Z.getCoef(i);
         }
 
+        cout << "Z : " << Z.getDegree() << endl;
+
         return res;
-        // return U + (Y - U - Z)
     }
 }
 

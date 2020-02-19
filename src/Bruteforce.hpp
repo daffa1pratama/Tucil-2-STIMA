@@ -22,15 +22,10 @@ class Polinom {
         void setCoef(int idx, int val);
         void setDegree(int degree);
         // Other operator
-        friend Polinom operator+(const Polinom& A, const Polinom& B);
-        friend Polinom operator-(const Polinom& A, const Polinom& B);
         friend Polinom operator*(const Polinom& A, const Polinom& B);
-        friend Polinom operator*(const Polinom& A, int x);
         // Other method
         void print();
         void inputCoef();
         void inputRandom();
         int solve(int x);
-        friend void solveDivideConquer(const Polinom& A,const Polinom& B);
-        friend Polinom divideConquerRecc(const Polinom& A, const Polinom& B);
 };

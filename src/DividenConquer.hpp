@@ -25,7 +25,6 @@ class Polinom {
         friend Polinom operator+(const Polinom& A, const Polinom& B);
         friend Polinom operator-(const Polinom& A, const Polinom& B);
         friend Polinom operator*(const Polinom& A, const Polinom& B);
-        friend Polinom operator*(const Polinom& A, int x);
         // Other method
         void print();
         void inputCoef();
