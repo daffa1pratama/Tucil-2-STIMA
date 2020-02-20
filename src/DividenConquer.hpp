@@ -1,3 +1,6 @@
+#ifndef __DIVIDE__AND__CONQUER__HPP
+#define __DIVIDE__AND__CONQUER__HPP 
+
 #include <iostream>
 #include <time.h>
 using namespace std;
@@ -6,6 +9,7 @@ class Polinom {
     private :
         int *coef;
         int degree;
+        static int numOp;
     public  :
         // Constructor
         Polinom();
@@ -19,17 +23,19 @@ class Polinom {
         // Getter setter
         int getCoef(int idx) const;
         int getDegree() const;
+        static int getNumOp();
         void setCoef(int idx, int val);
         void setDegree(int degree);
         // Other operator
-        friend Polinom operator+(const Polinom& A, const Polinom& B);
-        friend Polinom operator-(const Polinom& A, const Polinom& B);
-        friend Polinom operator*(const Polinom& A, const Polinom& B);
+        Polinom operator+(const Polinom& A);
+        Polinom operator-(const Polinom& A);
+        Polinom operator*(const Polinom& A);
         // Other method
         void print();
         void inputCoef();
         void inputRandom();
         int solve(int x);
-        friend void solveDivideConquer(const Polinom& A,const Polinom& B);
-        friend Polinom divideConquerRecc(const Polinom& A, const Polinom& B);
+        Polinom multiplyX(int d);
 };
+
+#endif
