@@ -6,25 +6,24 @@ using namespace std;
 
 int main() {
     srand(time(0));
-    Polinom A(3);
-    A.inputRandom();
-    // A.inputCoef();
+    Polinom A(1);
+    // A.inputRandom();
+    A.inputCoef();
     A.print();
-    Polinom B(3);
-    B.inputRandom();
-    // B.inputCoef();
+    Polinom B(1);
+    // B.inputRandom();
+    B.inputCoef();
     B.print();
     Polinom C;
     C = A*B;
-    A*B;
-    // cout << C.getDegree() << endl;
-    cout << C.getCoef(0) << endl;
-    for (int i = 0; i <= C.getDegree(); i++) {
-        cout << C.getCoef(i) << endl;
-    }
+    // A*B;
+    cout << C.getDegree() << endl;
     C.print();
     // (A*B).print();
+    // Polinom D;
     // solveDivideConquer(A,B);
+    cout << "hai" << endl;
     // A-B-C;
     // A+B;
+    return 0;
 }   

@@ -25,6 +25,7 @@ class Polinom {
         Polinom operator+(const Polinom& A);
         Polinom operator-(const Polinom& A);
         Polinom operator*(const Polinom& A);
+        Polinom operator*(int d);
         // Other method
         void print();
         void inputCoef();

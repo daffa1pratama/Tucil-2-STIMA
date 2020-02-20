@@ -109,16 +109,25 @@ Polinom Polinom::operator-(const Polinom& A) {
 }
 
 Polinom Polinom::operator*(const Polinom& A) {
-    Polinom res(2*this->getDegree());
+    Polinom res(this->getDegree()+A.getDegree());
     cout << res.getDegree() << endl;
+    int idx;
     for (int i = 0; i <= this->getDegree(); i++) {
-        int idx = i;
+        idx = i;
         for (int j = 0; j <= A.getDegree(); j++) {
-            res.coef[idx] += this->getCoef(i) * A.getCoef(j);
+            res.coef[idx] += (this->getCoef(i) * A.getCoef(j));
             idx++;
         }
     }
-    // res.print();
+    res.print();
+    return res;
+}
+
+Polinom Polinom::operator*(int d){
+    Polinom res(this->getDegree() + d);
+    for (int i = d; i <= res.getDegree(); i++) {
+        res.coef[i] = this->getCoef(i-d);
+    }
     return res;
 }
 
@@ -161,6 +170,9 @@ void Polinom::inputCoef() {
 void Polinom::inputRandom() {
     for (int i = 0; i <= this->degree; i++) {
         this->coef[i] = rand() % 11 - rand() % 11;
+        while (this->coef[i] == 0) {
+            this->coef[i] = rand() % 11 - rand() % 11;
+        }
     }
 
 }
@@ -197,16 +209,17 @@ Polinom divideConquerRecc(const Polinom& A, const Polinom& B) {
         return C;
     }
     else {
-        int lowerSize = 0;
-        if (A.getDegree() % 2 == 0) {        
-           lowerSize = (A.getDegree()/2) - 1;
-        }
-        else {
-            lowerSize = A.getDegree()/2;
-        }
+        // int lowerSize = 0;
+        // if (A.getDegree() % 2 == 0) {        
+        //    lowerSize = (A.getDegree()/2) - 1;
+        // }
+        // else {
+        //     lowerSize = A.getDegree()/2;
+        // }
+        int lowerSize = (A.getDegree()/2) - 1;
         int higherSize = (A.getDegree() - lowerSize - 1);
-        cout << "inu :" << lowerSize << endl;
-        cout << "itu :" << higherSize << endl;
+        cout << "Higher :" << higherSize << endl;
+        cout << "Lower :" << lowerSize << endl;
         Polinom ALower(lowerSize);
         Polinom AHigher(higherSize);
         Polinom BLower(lowerSize);
@@ -252,9 +265,9 @@ Polinom divideConquerRecc(const Polinom& A, const Polinom& B) {
         //     res.coef[i+n] += (Y.getCoef(i) - U.getCoef(i) - Z.getCoef(i));
         //     res.coef[i+(2*n)] += Z.getCoef(i);
         // }
-
+        cout << "halo" << endl;
         return res;
-        // return U + (Y - U - Z).multiplyX(lowerSize+1) + Z.multiplyX((lowerSize+1)*2);
+        // return U + (Y - U - Z)*(lowerSize+1) + Z*((lowerSize+1)*2);
     }
 }
 
