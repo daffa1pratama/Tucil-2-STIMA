@@ -5,15 +5,26 @@
 using namespace std;
 
 int main() {
-    Polinom A(4);
+    srand(time(0));
+    Polinom A(3);
     A.inputRandom();
+    // A.inputCoef();
     A.print();
-    Polinom B(4);
+    Polinom B(3);
     B.inputRandom();
+    // B.inputCoef();
     B.print();
-    // A+B;
+    Polinom C;
+    C = A*B;
     A*B;
-    solveDivideConquer(A,B);
+    // cout << C.getDegree() << endl;
+    cout << C.getCoef(0) << endl;
+    for (int i = 0; i <= C.getDegree(); i++) {
+        cout << C.getCoef(i) << endl;
+    }
+    C.print();
+    // (A*B).print();
+    // solveDivideConquer(A,B);
     // A-B-C;
     // A+B;
 }   
