@@ -162,17 +162,15 @@ Polinom Polinom::operator*(const Polinom& A) {
             BHigher.setCoef(i , this->getCoef(i + 1 + lowerSize));
         }
 
-        Polinom AHighLow = AHigher + ALower;
-        Polinom BHighLow = BHigher + BLower;
-
-        Polinom Y = AHighLow * BHighLow;
+        Polinom Y = (AHigher + ALower) * (BHigher + BLower);
         numOp++;
         Polinom U = ALower * BLower;
         numOp++;
         Polinom Z = AHigher * BHigher;
         numOp++;
 
-        return U + (Y - U - Z).multiplyX(lowerSize+1) + Z.multiplyX((lowerSize+1)*2);
+        Polinom res = U + (Y - U - Z).multiplyX(lowerSize+1) + Z.multiplyX((lowerSize+1)*2);
+        return res;
     }
 }
 
@@ -220,16 +218,6 @@ void Polinom::inputRandom() {
         }
     }
 
-}
-
-int Polinom::solve(int x) {
-    int temp = this->coef[0];
-    int deg = x;
-    for (int i = 1; i <= this->degree; i++) {
-        temp += this->coef[i] * deg;
-        deg *= x;
-    }
-    return temp;
 }
 
 Polinom Polinom::multiplyX(int d) {

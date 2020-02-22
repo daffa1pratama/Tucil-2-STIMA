@@ -63,88 +63,20 @@ void Polinom::setDegree(int degree) {
 }
 
 // Other operator
-Polinom Polinom::operator+(const Polinom& A) {
-    if (A.getDegree() == this->degree) {
-        Polinom res(A.getDegree());
-        for (int i = 0; i <= res.getDegree(); i++) {
-            res.coef[i] = A.getCoef(i) + this->coef[i];
-            numOp++;
-        }
-        return res;
-    }
-    else if (A.getDegree() > this->degree) {
-        Polinom res(A.getDegree());
-        for (int i = 0; i <= this->getDegree(); i++) {
-            res.coef[i] = A.getCoef(i) + this->coef[i];
-            numOp++;
-        }
-        for (int i = this->getDegree() + 1; i <= res.getDegree(); i++) {
-            res.coef[i] = A.getCoef(i);
-            numOp++;
-        }
-        return res;
-    }
-    else {
-        Polinom res(this->getDegree());
-        for (int i = 0; i <= A.getDegree(); i++) {
-            res.coef[i] = A.getCoef(i) + this->coef[i];
-            numOp++;
-        }
-        for (int i = A.getDegree() + 1; i <= res.getDegree(); i++) {
-            res.coef[i] = this->getCoef(i);
-            numOp++;
-        }
-        return res;
-    }
-}
-
-Polinom Polinom::operator-(const Polinom& A) {
-    if (A.getDegree() == this->degree) {
-        Polinom res(A.getDegree());
-        for (int i = 0; i <= res.getDegree(); i++) {
-            res.coef[i] = this->coef[i] - A.getCoef(i);
-        }
-        return res;
-    }
-    else if (A.getDegree() > this->degree) {
-        Polinom res(A.getDegree());
-        for (int i = 0; i <= this->getDegree(); i++) {
-            res.coef[i] = this->coef[i] - A.getCoef(i);
-        }
-        for (int i = this->getDegree() + 1; i <= res.getDegree(); i++) {
-            res.coef[i] = 0 - A.getCoef(i);
-        }
-        return res;
-    }
-    else {
-        Polinom res(this->degree);
-        for (int i = 0; i <= A.getDegree(); i++) {
-            res.coef[i] = this->coef[i] - A.getCoef(i);
-        }
-        for (int i = A.getDegree() + 1; i <= res.getDegree(); i++) {
-            res.coef[i] = this->getCoef(i);
-        }
-        return res;
-    }
-}
-
 Polinom Polinom::operator*(const Polinom& A) {
     Polinom res(this->getDegree()+A.getDegree());
     int idx;
     cout << this->getDegree() << endl;
     res.print();
     for (int i = 0; i <= this->getDegree(); i++) {
-        // cout << "AAA" << endl;
         idx = i;
         for (int j = 0; j <= A.getDegree(); j++) {
-            // cout << "BBB" << endl;
             res.coef[idx] += (this->getCoef(i) * A.getCoef(j));
-            numOp++;
-            numOp++;
+            numOp+=2;
             idx++;
         }
     }
-    // res.print();
+    numOp -= (2*A.getDegree()+1);
     return res;
 }
 
@@ -192,14 +124,4 @@ void Polinom::inputRandom() {
         }
     }
 
-}
-
-int Polinom::solve(int x) {
-    int temp = this->coef[0];
-    int deg = x;
-    for (int i = 1; i <= this->degree; i++) {
-        temp += this->coef[i] * deg;
-        deg *= x;
-    }
-    return temp;
 }

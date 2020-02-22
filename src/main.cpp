@@ -7,11 +7,17 @@ using namespace std;
 
 int main() {
     srand(time(0));
-    Polinom A(1);
+    cout << "================================" << endl;
+    cout << "**** KALKULATOR POLINOMIAL *****" << endl;
+    cout << "================================" << endl;
+    int n;
+    cout << "Masukan derajat tertinggi (n) : ";
+    cin >> n;
+    Polinom A(n);
     A.inputRandom();
     // A.inputCoef();
     A.print();
-    Polinom B(1);
+    Polinom B(n);
     B.inputRandom();
     // B.inputCoef();
     B.print();
@@ -19,16 +25,11 @@ int main() {
     clock_t begin = clock();
     C = A*B;
     clock_t end = clock();
-    double elapsedTime = double(end - begin) / 1000;
+    double elapsedTime = double(end - begin);
     C.print();
-    // A*B;
-    // solveDivideConquer(A,B);
+
     cout << "Time elapsed : " << elapsedTime << " microseconds" << endl;
     cout << "Number of sum & multiplication : " << Polinom::getNumOp() << endl;
-    // A-B-C;
-    // A+B;
-    // A.~Polinom();
-    // B.~Polinom();
-    // C.~Polinom();
+
     return 0;
 }   

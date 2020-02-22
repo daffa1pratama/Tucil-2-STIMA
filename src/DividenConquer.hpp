@@ -1,5 +1,5 @@
-#ifndef __DIVIDE__AND__CONQUER__HPP
-#define __DIVIDE__AND__CONQUER__HPP 
+#ifndef __DIVIDE__AND__CONQUER__HPP__
+#define __DIVIDE__AND__CONQUER__HPP__
 
 #include <iostream>
 #include <time.h>
@@ -34,7 +34,6 @@ class Polinom {
         void print();
         void inputCoef();
         void inputRandom();
-        int solve(int x);
         Polinom multiplyX(int d);
 };
 

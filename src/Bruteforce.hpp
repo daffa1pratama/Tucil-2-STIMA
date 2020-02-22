@@ -1,5 +1,5 @@
-#ifndef __BRUTE__FORCE__HPP
-#define __BRUTE__FORCE__HPP
+#ifndef __BRUTE__FORCE__HPP__
+#define __BRUTE__FORCE__HPP__
 
 #include <iostream>
 #include <time.h>
@@ -27,14 +27,11 @@ class Polinom {
         void setCoef(int idx, int val);
         void setDegree(int degree);
         // Other operator
-        Polinom operator+(const Polinom& A);
-        Polinom operator-(const Polinom& A);
         Polinom operator*(const Polinom& A);
         // Other method
         void print();
         void inputCoef();
         void inputRandom();
-        int solve(int x);
 };
 
 #endif
