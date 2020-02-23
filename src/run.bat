@@ -1,2 +1,2 @@
-g++ Bruteforce.cpp main.cpp -o main
+g++ DividenConquer.cpp main.cpp -o dividenconquer
 .\main

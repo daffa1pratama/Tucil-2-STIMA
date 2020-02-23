@@ -7,9 +7,9 @@ using namespace std;
 
 class Polinom {
     private :
-        int *coef;
-        int degree;
-        static int numOp;
+        int *coef;          // Container koefisien polinom
+        int degree;         // Pangkat tertinggi polinom
+        static int numOp;   // Counter operator
     public  :
         // Constructor
         Polinom();

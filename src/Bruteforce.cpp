@@ -2,10 +2,12 @@
 using namespace std;
 
 // Static init
+// Inisialisasi counter operator
 int Polinom::numOp = 0;
 
 // Constructor
 Polinom::Polinom() {
+    // Default constructor, meng-assign degree = 0 dan semua koefisien = 0
     this->degree = 0;
     this->coef = new int[this->degree+1];
     for (int i = 0; i <= this->degree; i++) {
@@ -13,6 +15,7 @@ Polinom::Polinom() {
     }
 }
 Polinom::Polinom(int degree) {
+    // Meng-assign degree = degree dan semua koeifisen = 0
     if (degree < 0) {
         this->degree = 0;
     }
@@ -26,6 +29,7 @@ Polinom::Polinom(int degree) {
 }
 // Copy constructor
 Polinom::Polinom(const Polinom& p) {
+    // Mengassign degree = p.degree dan semua koefisien = p.coef
     this->degree = p.degree;
     this->coef = new int[this->degree+1];
     for (int i = 0; i <= this->degree; i++) {
@@ -38,6 +42,7 @@ Polinom::~Polinom() {
 }
 // Operator assignment
 Polinom& Polinom::operator=(const Polinom& p) {
+    // Operator overloading assignment, mengassign degree = p.degree dan semua koefisien = p.coef
     this->degree = p.degree;
     this->coef = new int[this->degree+1];
     for (int i = 0; i <= this->degree; i++) {
@@ -47,27 +52,31 @@ Polinom& Polinom::operator=(const Polinom& p) {
 }
 // Getter setter
 int Polinom::getCoef(int idx) const{
+    // Mengembalikan nilai koefisien ke-idx
     return this->coef[idx];
 }
 int Polinom::getDegree() const{
+    // Mengembalikan nilai derajat tertinggi
     return this->degree;
 }
 int Polinom::getNumOp() {
+    // Mengembalikan jumlah operator
     return numOp;
 }
 void Polinom::setCoef(int idx, int val) {
+    // Mengassign koefisien ke-idx = val
     this->coef[idx] = val;
 }
 void Polinom::setDegree(int degree) {
+    // Mengassign degree = degree
     this->degree = degree;
 }
 
 // Other operator
 Polinom Polinom::operator*(const Polinom& A) {
+    // Operator overloading * , implementasi algoritma bruteforce untuk perkalian 2 polinom
     Polinom res(this->getDegree()+A.getDegree());
     int idx;
-    cout << this->getDegree() << endl;
-    res.print();
     for (int i = 0; i <= this->getDegree(); i++) {
         idx = i;
         for (int j = 0; j <= A.getDegree(); j++) {
@@ -82,6 +91,7 @@ Polinom Polinom::operator*(const Polinom& A) {
 
 // Other method
 void Polinom::print() {
+    // Mencetak polinom ke layar
     cout << this->coef[0];
     for (int i = 1; i <= this->degree; i++) {
         if (this->coef[i] > 0) {
@@ -111,17 +121,18 @@ void Polinom::print() {
 }
 
 void Polinom::inputCoef() {
+    // Memasukkan koefisien dari pengguna
     for (int i = 0; i <= this->degree; i++) {
         cin >> this->coef[i];
     }
 }
 
 void Polinom::inputRandom() {
+    // Memasukkan koefisien yang dibangkitkan secara acak
     for (int i = 0; i <= this->degree; i++) {
         this->coef[i] = rand() % 11 - rand() % 11;
         while (this->coef[i] == 0) {
             this->coef[i] = rand() % 11 - rand() % 11;
         }
     }
-
 }
